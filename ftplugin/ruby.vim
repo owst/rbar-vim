@@ -13,7 +13,15 @@ function! InlineVariableUnderCursor()
     let l:curline = line(".")
     let l:curvcol = virtcol(".")
     let l:pos = join([l:curline, l:curvcol], ":")
-    let l:args = join(["inline", expand("%:p"), l:pos, l:pos], " ")
+    let l:args = join([
+                \ "inline",
+                \ "--file",
+                \ expand("%:p"),
+                \ "--start-pos",
+                \ l:pos,
+                \ "--end-pos",
+                \ l:pos
+                \ ], " ")
 
     execute "%!" . g:rbar_command . " " . l:args
 
